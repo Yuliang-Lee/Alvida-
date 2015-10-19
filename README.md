@@ -32,9 +32,9 @@ A JS practice project
   pick
   defaults
   clone
+  has
   property
   propertyOf
-  has
   isMatch
   isEmpty
   isElement
@@ -57,3 +57,4 @@ A JS practice project
     omit
     tap
     matcher
+    isEqual
