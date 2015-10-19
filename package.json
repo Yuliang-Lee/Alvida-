@@ -1,0 +1,21 @@
+{
+  "name": "Alvida",
+  "description": "一个练习项目",
+  "keywords": [],
+  "author": "xlaoyu",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Yuliang-Lee/Alvida-.git"
+  },
+  "main": "Alvida.js",
+  "version": "0.0.1",
+  "devDependencies": {
+    "karma": "^0.13.10",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-qunit": "^0.1.5",
+    "phantomjs": "^1.9.18",
+    "qunitjs": "^1.19.0"
+  },
+  "license": "MIT"
+}

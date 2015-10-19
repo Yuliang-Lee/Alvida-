@@ -13,8 +13,26 @@
         //常用的原型方法的引用
         hasOwn = objProto.hasOwnProperty,
         toString = objProto.toString,
-        slice = arrayProto.slice,
-        _ = {};
+        slice = arrayProto.slice;
+
+    // Create a safe reference to the Underscore object for use below.
+    var _ = function(obj) {
+    if (obj instanceof _) return obj;
+    if (!(this instanceof _)) return new _(obj);
+    this._wrapped = obj;
+    };
+
+    // Export the Underscore object for **Node.js**, with
+    // backwards-compatibility for the old `require()` API. If we're in
+    // the browser, add `_` as a global object.
+    if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+      exports = module.exports = _;
+    }
+    exports._ = _;
+    } else {
+    root._ = _;
+    }
 
     var nativeForEach = arrayProto.forEach;
 
@@ -25,11 +43,67 @@
         }
     }
 
-    // _.each = function(list, iteratee, context) {
-    //     if(nativeForEach !== "undefined") {
-    //         return nativeForEach.
-    //     }
-    // }
+    var isArrayLike = function(collection) {
+        var length = collection && collection.length;
+        return typeof length == 'number' && length >= 0;
+    };
+
+    //Collections Functions
+
+    _.each = function(obj, iteratee, context) {
+        iteratee = bindFunContext(iteratee, context);
+        var i, length;
+        if(isArrayLike(obj)) {
+            for (i = 0, length = obj.length; i < length; i++) {
+                iteratee(obj[i], i, obj);
+            };
+        }else {
+            var keys = _.keys(obj);
+            for (var i = 0, length = keys.length; i < length; i++) {
+                iteratee(obj[keys[i]], keys[i], obj);
+            };
+        }
+        // 根据api要求返回obj,可以进行链式调用
+        return obj;
+    };
+
+    _.map = function(list, iteratee, context) {
+        iteratee = bindFunContext(iteratee, context);
+        var i, length, result = {};
+        if(isArrayLike(obj)) {
+            for (i = 0, length = obj.length; i < length; i++) {
+                result[i] = iteratee(obj[i], i, obj);
+            };
+        }else {
+            var keys = _.keys(obj);
+            for (var i = 0, length = keys.length; i < length; i++) {
+                result[i] = iteratee(obj[keys[i]], keys[i], obj);
+            };
+        }
+        return result;
+    };
+
+    // 返回第一个符合要求的元素/属性值,没有的话返回undefined
+    _.find = function(obj, predicate, context) {
+        predicate = bindFunContext(predicate, context);
+        var i, keys, length;
+        if(isArrayLike(obj)) {
+            keys = obj;
+        }else {
+            keys = _.keys(obj);
+        }
+        for (i = 0, length = keys.length; i < length; i++) {
+            if(predicate(obj[i], i, obj)) {
+                return obj[i]
+            }
+        };
+    };
+
+    // 返回一个数组,包括所有通过检验的值,predicate有可能是函数,数组和对象
+    _.filter = function(obj, predicate, context) {
+        var result = [];
+        // predicate
+    };
 
     // Object Functions
 
@@ -309,8 +383,9 @@
     };
 
     // 判断对象是否是一个dom节点
+    // fixed:经过测试,nodeType的类型必须是 数字1~12
     _.isElement = function(obj) {
-        return obj && obj.nodeType === "1";
+        return obj && obj.nodeType === 1;
     };
 
     // 如果对象是数组,则返回true

@@ -12,49 +12,55 @@ A JS practice project
 
 ## 进度/schedule
 
-* **Collections**
+- **Collections**
+  - each
+  - - map
+  - find
+  - filter
+  - 暂未实现
 
-* **Arrays**
 
-* **Functions**
+- **Arrays**
 
-* **Objects**
-  keys
-  allKeys
-  values
-  mapObject
-  pairs
-  invert
-  functions
-  findKey
-  extend
-  extendOwn
-  pick
-  defaults
-  clone
-  has
-  property
-  propertyOf
-  isMatch
-  isEmpty
-  isElement
-  isArray
-  isObject
-  isArguments
-  isFunction
-  isString
-  isNumber
-  isFinite
-  isBoolean
-  isDate
-  isRegExp
-  isError
-  isNaN
-  isNull
-  isUndefined
-  暂时未实现
-  * create
-    omit
-    tap
-    matcher
-    isEqual
+- **Functions**
+
+- **Objects**
+  - keys
+  - allKeys
+  - values
+  - mapObject
+  - pairs
+  - invert
+  - functions
+  - findKey
+  - extend
+  - extendOwn
+  - pick
+  - defaults
+  - clone
+  - has
+  - property
+  - propertyOf
+  - isMatch
+  - isEmpty
+  - isElement
+  - isArray
+  - isObject
+  - isArguments
+  - isFunction
+  - isString
+  - isNumber
+  - isFinite
+  - isBoolean
+  - isDate
+  - isRegExp
+  - isError
+  - isNaN
+  - isNull
+  - isUndefined
+  - 暂时未实现
+    - create
+    - omit
+    - tap
+    - matcher
+    - isEqual
